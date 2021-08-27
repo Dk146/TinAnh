@@ -11,16 +11,10 @@ public class UserInfo {
         this.sex = sex;
         this.profileImageUrl = profileImageUrl;
     }
-    public UserInfo(String ID, String name, String sex){
-        this.ID = ID;
-        this.name = name;
-        this.sex = sex;
-    }
 
     public String getID() {
         return ID;
     }
-
     public void setID(String ID) {
         this.ID = ID;
     }

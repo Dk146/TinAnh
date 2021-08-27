@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.firebasetesting">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseTesting">
+        <activity
+            android:name=".matches.MatchesActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.SettingActivity"
             android:exported="true" />
@@ -28,7 +31,7 @@
         </activity>
         <activity
             android:name=".activity.RegisterActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true" />

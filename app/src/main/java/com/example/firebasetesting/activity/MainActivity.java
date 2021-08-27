@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.firebasetesting.ItemArrayAdapter;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
+import com.example.firebasetesting.matches.MatchesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -217,7 +218,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToSetting(View view) {
         Intent intent = new Intent(this, SettingActivity.class);
-        Log.d("MainActivity", userSex);
+        startActivity(intent);
+        return;
+    }
+
+    public void goToMatch(View view) {
+        Intent intent = new Intent(this, MatchesActivity.class);
         startActivity(intent);
         return;
     }
