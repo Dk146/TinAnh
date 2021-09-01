@@ -7,37 +7,31 @@
     tools:context=".activity.MainActivity">
 
     <LinearLayout
+        android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/line1"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_above="@+id/bottomNav"
+        android:layout_marginBottom="0dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/dislike"
-                android:text="Dislike"
-                android:layout_margin="4dp"/>
-            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="Dislike" />
+
+            <Button
                 android:id="@+id/like"
-                android:text="Like"
-                android:layout_margin="4dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/logOut"
-                android:text="Log Out"
-                android:onClick="logoutUser"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:text="Like" />
         </LinearLayout>
 
     </LinearLayout>

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.activity.MainActivity;
 import com.example.firebasetesting.activity.SettingActivity;
+import com.example.firebasetesting.whoLikeYou.WhoLikeYouActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -56,6 +57,10 @@ public class MatchesActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.matches:
+                        return true;
+                    case R.id.liked:
+                        startActivity(new Intent(MatchesActivity.this, WhoLikeYouActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.setting:
                         startActivity(new Intent(MatchesActivity.this, SettingActivity.class));

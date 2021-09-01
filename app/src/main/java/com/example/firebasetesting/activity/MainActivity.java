@@ -18,6 +18,7 @@ import com.example.firebasetesting.ItemArrayAdapter;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
 import com.example.firebasetesting.matches.MatchesActivity;
+import com.example.firebasetesting.whoLikeYou.WhoLikeYouActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -130,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, MatchesActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
+                    case R.id.liked:
+                        startActivity(new Intent(MainActivity.this, WhoLikeYouActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
                     case R.id.setting:
                         startActivity(new Intent(MainActivity.this, SettingActivity.class));
                         overridePendingTransition(0, 0);
@@ -172,10 +177,10 @@ public class MainActivity extends AppCompatActivity {
         currentUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    if (snapshot.child("Sex").getValue() != null){
+                if (snapshot.exists()) {
+                    if (snapshot.child("Sex").getValue() != null) {
                         userSex = snapshot.child("Sex").getValue().toString();
-                        switch(userSex){
+                        switch (userSex) {
                             case "Male":
                                 oppositeUserSex = "Female";
                                 break;
@@ -233,13 +238,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void logoutUser(View view) {
-        mAuth.signOut();
-        Intent intent = new Intent(MainActivity.this, LoginRegisterActivity.class);
-        startActivity(intent);
-        finish();
-        return;
-    }
-
 }

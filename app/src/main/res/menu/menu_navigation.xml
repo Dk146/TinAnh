@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_baseline_message_24"/>
 
     <item
-        android:id="@+id/like"
+        android:id="@+id/liked"
         android:title=""
         android:icon="@drawable/ic_outline_thumb_up_alt_24"/>
 

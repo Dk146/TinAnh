@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.matches.MatchesActivity;
+import com.example.firebasetesting.whoLikeYou.WhoLikeYouActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -104,6 +105,10 @@ public class SettingActivity extends AppCompatActivity {
                         return true;
                     case R.id.matches:
                         startActivity(new Intent(SettingActivity.this, MatchesActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.liked:
+                        startActivity(new Intent(SettingActivity.this, WhoLikeYouActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.setting:
@@ -221,5 +226,13 @@ public class SettingActivity extends AppCompatActivity {
             resultUri = imageUri;
             mAvatar.setImageURI(resultUri);
         }
+    }
+
+    public void logoutUser(View view) {
+        mAuth.signOut();
+        Intent intent = new Intent(SettingActivity.this, LoginRegisterActivity.class);
+        startActivity(intent);
+        finish();
+        return;
     }
 }
