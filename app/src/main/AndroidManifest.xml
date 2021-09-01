@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseTesting">
         <activity
+            android:name=".chat.ChatActivity"
+            android:exported="true" />
+        <activity
             android:name=".matches.MatchesActivity"
             android:exported="true" />
         <activity

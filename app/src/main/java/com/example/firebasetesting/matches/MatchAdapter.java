@@ -1,6 +1,9 @@
 package com.example.firebasetesting.matches;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.firebasetesting.ItemArrayAdapter;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
+import com.example.firebasetesting.chat.ChatActivity;
 
 import java.util.LinkedList;
 
@@ -29,15 +33,27 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         this.context = context;
     }
 
-    public class MatchViewHolder extends RecyclerView.ViewHolder{
+    public class MatchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView mMatchImg;
+        String mMatchID;
         TextView mName;
         final MatchAdapter mAdapter;
         public MatchViewHolder(@NonNull View itemView, MatchAdapter adapter) {
             super(itemView);
+            itemView.setOnClickListener(this);
             mMatchImg = itemView.findViewById(R.id.match_img);
             mName = itemView.findViewById(R.id.match_name);
             mAdapter = adapter;
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), ChatActivity.class);
+            Bundle b = new Bundle();
+            b.putString("matchID", mMatchID);
+            intent.putExtras(b);
+            view.getContext().startActivity(intent);
         }
     }
 
@@ -53,6 +69,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         MatchesObject mCurrent = mMatch_list.get(position);
 
         holder.mName.setText(mCurrent.name);
+        holder.mMatchID = mCurrent.ID;
         if (!mCurrent.getProfileImageUrl().equals("default")){
             Glide.with(context).load(mCurrent.getProfileImageUrl()).into(holder.mMatchImg);
         }
