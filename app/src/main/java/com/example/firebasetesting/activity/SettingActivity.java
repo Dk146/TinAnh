@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,12 +17,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasetesting.R;
-import com.example.firebasetesting.matches.MatchesActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -91,27 +88,6 @@ public class SettingActivity extends AppCompatActivity {
                 return;
             }
         });
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
-        bottomNavigationView.setSelectedItemId(R.id.setting);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        startActivity(new Intent(SettingActivity.this, MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.matches:
-                        startActivity(new Intent(SettingActivity.this, MatchesActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.setting:
-                        return true;
-                }
-                return false;
-            }
-        });
     }
 
     private void displayUserInfo() {
@@ -141,6 +117,7 @@ public class SettingActivity extends AppCompatActivity {
                                 Glide.with(getApplication()).load(profileImageUrl).into(mAvatar);
                                 break;
                         }
+                        Log.d("DataChange",profileImageUrl);
                         //Glide.with(getApplication()).load(profileImageUrl).into(mAvatar);
                     }
                 }
@@ -197,7 +174,9 @@ public class SettingActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         Uri downloadUrl = task.getResult();
+                        Log.d("ImageUrl", downloadUrl.toString());
                         Map userInfo = new HashMap();
+                        userInfo.put("ProfileImageUrl", downloadUrl.toString());
                         mUserDB.updateChildren(userInfo);
                         finish();
                         return;
