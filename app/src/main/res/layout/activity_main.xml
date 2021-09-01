@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/line1"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -34,9 +35,23 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/match"
+                android:text="Match"
+                android:onClick="goToMatch"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/logOut"
                 android:text="Log Out"
                 android:onClick="logoutUser"
+                android:layout_margin="4dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/setting"
+                android:text="Setting"
+                android:onClick="goToSetting"
                 android:layout_margin="4dp"/>
         </LinearLayout>
 
@@ -48,16 +63,5 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/line1"
         app:rotation_degrees="15.0" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemBackground="@color/teal_200"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu_navigation"></com.google.android.material.bottomnavigation.BottomNavigationView>
-
 
 </RelativeLayout>
