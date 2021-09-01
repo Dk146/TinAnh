@@ -3,6 +3,7 @@ package com.example.firebasetesting.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.example.firebasetesting.ItemArrayAdapter;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
 import com.example.firebasetesting.matches.MatchesActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -81,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 UserInfo user = (UserInfo) o;
                 String userID = user.getID();
                 userDB.child(userID).child("Connection").child("Nope").child(currentUId).setValue(true);
-                Toast.makeText(MainActivity.this,"Dislike", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 String userID = user.getID();
                 userDB.child(userID).child("Connection").child("Yeps").child(currentUId).setValue(true);
                 isConnectionMatch(userID);
-                //Toast.makeText(MainActivity.this,"Like", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -115,6 +115,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flingAdapterView.getTopCardListener().selectLeft();
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        return true;
+                    case R.id.matches:
+                        startActivity(new Intent(MainActivity.this, MatchesActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.setting:
+                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
             }
         });
     }
@@ -169,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
@@ -222,15 +242,4 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
 
-    public void goToSetting(View view) {
-        Intent intent = new Intent(this, SettingActivity.class);
-        startActivity(intent);
-        return;
-    }
-
-    public void goToMatch(View view) {
-        Intent intent = new Intent(this, MatchesActivity.class);
-        startActivity(intent);
-        return;
-    }
 }
