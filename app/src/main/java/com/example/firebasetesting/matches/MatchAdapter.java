@@ -17,8 +17,11 @@ import com.bumptech.glide.Glide;
 import com.example.firebasetesting.ItemArrayAdapter;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
+import com.example.firebasetesting.activity.MainActivity;
 import com.example.firebasetesting.chat.ChatActivity;
+import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {

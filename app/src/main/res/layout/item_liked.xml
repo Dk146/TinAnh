@@ -3,16 +3,15 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingLeft="40sp"
-    android:paddingRight="40sp"
-    android:paddingTop="20sp"
-    android:paddingBottom="20sp"
+    android:paddingLeft="10sp"
+    android:paddingRight="10sp"
+    android:paddingTop="10sp"
+    android:paddingBottom="10sp"
     android:layout_gravity="center"
     android:outlineProvider="bounds"
-    android:clipToPadding="false">
-
-
-
+    android:layout_centerHorizontal="true"
+    android:clipToPadding="false"
+    android:layout_margin="7dp">
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,13 +20,13 @@
         android:elevation="2dp"
         android:id="@+id/cardView">
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="350dp"
+            android:layout_width="150dp"
+            android:layout_height="175dp"
             android:orientation="vertical"
             android:layout_gravity="center">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="150dp"
                 android:id="@+id/image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/tinder_app"
@@ -39,7 +38,7 @@
                 android:text="Match"
                 android:id="@+id/name"
                 android:gravity="center"
-                android:textSize="30sp"
+                android:textSize="15sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
 
