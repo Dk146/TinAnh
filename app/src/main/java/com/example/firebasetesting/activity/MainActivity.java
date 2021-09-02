@@ -105,6 +105,20 @@ public class MainActivity extends AppCompatActivity {
             public void onScroll(float v) {
 
             }
+
+        });
+
+        flingAdapterView.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int i, Object o) {
+                Log.d("Clicked", "Clicked");
+                UserInfo otherUser = (UserInfo) o;
+                Intent intent = new Intent(MainActivity.this, OtherProfileActivity.class);
+                Bundle b = new Bundle();
+                b.putString("otherID", otherUser.ID);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
         });
 
         like.setOnClickListener(new View.OnClickListener() {
@@ -240,4 +254,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

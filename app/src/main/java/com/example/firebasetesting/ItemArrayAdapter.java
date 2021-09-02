@@ -1,6 +1,9 @@
 package com.example.firebasetesting;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.example.firebasetesting.activity.OtherProfileActivity;
 
 import java.util.List;
 
-public class ItemArrayAdapter extends ArrayAdapter<UserInfo> {
-
+public class ItemArrayAdapter extends ArrayAdapter<UserInfo> implements View.OnClickListener {
+    String otherID;
     public ItemArrayAdapter(Context context, int resource, List<UserInfo> items) {
         super(context, resource, items);
     }
@@ -25,7 +29,10 @@ public class ItemArrayAdapter extends ArrayAdapter<UserInfo> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         UserInfo userInfo = getItem(position);
-
+        if (convertView != null) {
+            convertView.setOnClickListener(this);
+        }
+        otherID = userInfo.getID();
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
         }
@@ -43,5 +50,15 @@ public class ItemArrayAdapter extends ArrayAdapter<UserInfo> {
                 break;
         }
         return convertView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.d("Clicked", "Clicked");
+        Intent intent = new Intent(v.getContext(), OtherProfileActivity.class);
+        Bundle b = new Bundle();
+        b.putString("otherID", otherID);
+        intent.putExtras(b);
+        v.getContext().startActivity(intent);
     }
 }

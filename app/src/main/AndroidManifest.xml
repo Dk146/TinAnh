@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseTesting">
         <activity
+            android:name=".activity.OtherProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".whoLikeYou.WhoLikeYouActivity"
             android:exported="true" />
         <activity

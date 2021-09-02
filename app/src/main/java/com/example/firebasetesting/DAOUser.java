@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class DAOUser {
     private DatabaseReference databaseReference;
-    UserInfo userInfo;
+    public UserInfo userInfo;
 
     public DAOUser() {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -104,13 +104,16 @@ public class DAOUser {
     }
 
     public void getUserInfo(String userID) {
+        Log.d("Name", userID);
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(userID);
         userDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String userID = snapshot.getKey();
-                String name = "", sex = "", profileImageUrl = "default";
+                Log.d("Name", userID);
+                String name = "", sex = "", profileImageUrl = "default", jobTitle = "", description = "";
                 if (snapshot.child("Name") != null) {
+                    Log.d("Name", "a");
                     name = snapshot.child("Name").getValue().toString();
                     Log.d("LikedInfo", "NDK");
                 }
@@ -120,7 +123,18 @@ public class DAOUser {
                 if (snapshot.child("ProfileImageUrl") != null) {
                     profileImageUrl = snapshot.child("ProfileImageUrl").getValue().toString();
                 }
+                if (snapshot.child("JobTitle") != null) {
+                    jobTitle = snapshot.child("JobTitle").getValue().toString();
+                }
+                if (snapshot.child("Description") != null) {
+                    description = snapshot.child("Description").getValue().toString();
+                }
+                Log.d("Name", name);
                 userInfo = new UserInfo(userID, name, sex, profileImageUrl);
+                userInfo.jobTitle = jobTitle;
+                Log.d("Name", userInfo.name);
+                Log.d("Name", userInfo.jobTitle);
+                userInfo.description = description;
             }
 
             @Override
