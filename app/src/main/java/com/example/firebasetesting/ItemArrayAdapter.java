@@ -44,6 +44,4 @@ public class ItemArrayAdapter extends ArrayAdapter<UserInfo> {
         }
         return convertView;
     }
-
-
 }
