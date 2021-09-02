@@ -20,6 +20,7 @@ import java.util.Map;
 
 public class DAOUser {
     private DatabaseReference databaseReference;
+    UserInfo userInfo;
 
     public DAOUser() {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -32,6 +33,24 @@ public class DAOUser {
         Info.put("Sex", userInfo.sex);
         Info.put("ProfileImageUrl", userInfo.profileImageUrl);
         return databaseReference.child(userInfo.ID).updateChildren(Info);
+    }
+
+    public void getUsersMatchID(String mCurrentUserID, LinkedList<UserInfo> likedList,RecyclerView.Adapter mLikedAdapter) {
+        DatabaseReference matchesDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mCurrentUserID).child("Connection").child("Matches");
+        matchesDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot match : snapshot.getChildren()){
+                        fetchInfo(match.getKey(), likedList, mLikedAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     public void getLikedUserID(String mCurrentUserID, LinkedList<UserInfo> likedList,RecyclerView.Adapter mLikedAdapter) {
@@ -80,6 +99,32 @@ public class DAOUser {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+    public void getUserInfo(String userID) {
+        DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(userID);
+        userDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String userID = snapshot.getKey();
+                String name = "", sex = "", profileImageUrl = "default";
+                if (snapshot.child("Name") != null) {
+                    name = snapshot.child("Name").getValue().toString();
+                    Log.d("LikedInfo", "NDK");
+                }
+                if (snapshot.child("Sex") != null) {
+                    sex = snapshot.child("Sex").getValue().toString();
+                }
+                if (snapshot.child("ProfileImageUrl") != null) {
+                    profileImageUrl = snapshot.child("ProfileImageUrl").getValue().toString();
+                }
+                userInfo = new UserInfo(userID, name, sex, profileImageUrl);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }

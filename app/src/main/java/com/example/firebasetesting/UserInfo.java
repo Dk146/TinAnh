@@ -3,7 +3,7 @@ package com.example.firebasetesting;
 import com.bumptech.glide.Glide;
 
 public class UserInfo {
-    public String ID, name, sex, profileImageUrl;
+    public String ID, name, sex, profileImageUrl, description;
     public UserInfo() {}
     public UserInfo(String ID, String name, String sex, String profileImageUrl){
         this.ID = ID;

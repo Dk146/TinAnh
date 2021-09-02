@@ -27,10 +27,10 @@ import java.util.LinkedList;
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
 
     private LayoutInflater mInflater;
-    private final LinkedList<MatchesObject> mMatch_list;
+    private final LinkedList<UserInfo> mMatch_list;
     private Context context;
 
-    public MatchAdapter(Context context, LinkedList<MatchesObject> mMatch_list) {
+    public MatchAdapter(Context context, LinkedList<UserInfo> mMatch_list) {
         mInflater = LayoutInflater.from(context);
         this.mMatch_list = mMatch_list;
         this.context = context;
@@ -69,7 +69,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
-        MatchesObject mCurrent = mMatch_list.get(position);
+        UserInfo mCurrent = mMatch_list.get(position);
 
         holder.mName.setText(mCurrent.name);
         holder.mMatchID = mCurrent.ID;

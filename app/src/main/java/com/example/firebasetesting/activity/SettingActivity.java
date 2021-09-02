@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasetesting.R;
@@ -42,12 +43,12 @@ import java.util.Map;
 
 public class SettingActivity extends AppCompatActivity {
 
-    private EditText mName, mPhoneNumber;
+    private EditText mName, mPhoneNumber, mDescription, mJobTitle;
     private Button btn_back, btn_confirm;
     private ImageView mAvatar;
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDB;
-    private String userID, name, phoneNumber, profileImageUrl, userSex;
+    private String userID, name, phoneNumber, profileImageUrl, userSex, description, jobTitle;
     private Uri resultUri;
 
     @Override
@@ -58,6 +59,9 @@ public class SettingActivity extends AppCompatActivity {
         mName = findViewById(R.id.name);
         mPhoneNumber = findViewById(R.id.phone);
         mAvatar = findViewById(R.id.avatar);
+        mDescription = findViewById(R.id.description);
+        mJobTitle = findViewById(R.id.jobTitle);
+
         btn_back = findViewById(R.id.back_button);
         btn_confirm = findViewById(R.id.confirm_button);
 
@@ -69,29 +73,13 @@ public class SettingActivity extends AppCompatActivity {
 
         displayUserInfo();
 
-        mAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
-            }
+        mAvatar.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, 1);
         });
 
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveUserInformation();
-            }
-        });
-
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                return;
-            }
-        });
+        btn_confirm.setOnClickListener(v -> saveUserInformation());
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setSelectedItemId(R.id.setting);
@@ -133,6 +121,14 @@ public class SettingActivity extends AppCompatActivity {
                         phoneNumber = map.get("Phone").toString();
                         mPhoneNumber.setText(phoneNumber);
                     }
+                    if (map.get("Description") != null){
+                        description = map.get("Description").toString();
+                        mDescription.setText(description);
+                    }
+                    if (map.get("JobTitle") != null){
+                        jobTitle = map.get("JobTitle").toString();
+                        mJobTitle.setText(jobTitle);
+                    }
                     if (map.get("Sex") != null){
                         userSex = map.get("Sex").toString();
                     }
@@ -160,10 +156,14 @@ public class SettingActivity extends AppCompatActivity {
     private void saveUserInformation() {
         name = mName.getText().toString();
         phoneNumber = mPhoneNumber.getText().toString();
+        description = mDescription.getText().toString();
+        jobTitle = mJobTitle.getText().toString();
 
         Map userInfo = new HashMap();
         userInfo.put("Name", name);
         userInfo.put("Phone", phoneNumber);
+        userInfo.put("Description", description);
+        userInfo.put("JobTitle", jobTitle);
 
         mUserDB.updateChildren(userInfo);
         if (resultUri != null) {
@@ -213,7 +213,7 @@ public class SettingActivity extends AppCompatActivity {
             });
 
         }else{
-            finish();
+            //finish();
         }
 
     }
