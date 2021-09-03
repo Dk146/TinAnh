@@ -1,6 +1,7 @@
 package com.example.firebasetesting.whoLikeYou;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
+import com.example.firebasetesting.activity.OtherProfileActivity;
 
 import java.util.LinkedList;
 
@@ -41,6 +43,7 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedAdapter.LikedViewHol
 
         @Override
         public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), OtherProfileActivity.class);
 
         }
     }

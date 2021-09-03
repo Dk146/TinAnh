@@ -92,6 +92,13 @@ public class WhoLikeYouActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-
+        String otherID = mPreferences.getString("otherID", "Null");
+        if (!otherID.equals("Null")) {
+            for (UserInfo userInfo : likedList) {
+                if (userInfo.ID == mCurrentUserID) {
+                    likedList.remove(userInfo);
+                }
+            }
+        }
     }
 }
