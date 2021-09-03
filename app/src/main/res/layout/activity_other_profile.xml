@@ -60,13 +60,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/dislike"
         android:layout_gravity="bottom|center"
-        android:layout_marginRight="35dp"/>
+        android:layout_marginRight="35dp"
+        android:src="@drawable/cancel"
+        android:tint="@null"
+        android:onClick="swipeLeft"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/like"
         android:layout_gravity="bottom|center"
-        android:layout_marginLeft="35dp"/>
-
+        android:layout_marginLeft="35dp"
+        android:src="@drawable/ic_favourite"
+        android:onClick="swipeRight"/>
 
 </FrameLayout>

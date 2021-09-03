@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,6 +37,9 @@ public class WhoLikeYouActivity extends AppCompatActivity {
     LinkedList<UserInfo> likedList = new LinkedList<>();
     RecyclerView mRecyclerView;
     LikedAdapter mLikedAdapter;
+    private SharedPreferences mPreferences;
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,5 +87,11 @@ public class WhoLikeYouActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
     }
 }

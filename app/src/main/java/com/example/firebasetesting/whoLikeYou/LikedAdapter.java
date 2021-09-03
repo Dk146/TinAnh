@@ -28,7 +28,7 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedAdapter.LikedViewHol
 
     }
 
-    public class LikedViewHolder extends RecyclerView.ViewHolder {
+    public class LikedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView avatar;
         TextView name;
         final LikedAdapter mLikeAdapter;
@@ -37,6 +37,11 @@ public class LikedAdapter extends RecyclerView.Adapter<LikedAdapter.LikedViewHol
             avatar = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
             mLikeAdapter = adapter;
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 

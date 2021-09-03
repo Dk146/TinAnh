@@ -77,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
         flingAdapterView.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                rowItems.remove(0);
-                arrayAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -86,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 UserInfo user = (UserInfo) o;
                 String userID = user.getID();
                 userDB.child(userID).child("Connection").child("Nope").child(currentUId).setValue(true);
+                rowItems.remove(0);
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
                 String userID = user.getID();
                 userDB.child(userID).child("Connection").child("Yeps").child(currentUId).setValue(true);
                 isConnectionMatch(userID);
+                rowItems.remove(0);
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -255,4 +258,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("onResume", "Yep");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("onRestart", "Yep");
+        if (rowItems.size() != 0) {
+            DatabaseReference otherUserDB = userDB.child(rowItems.get(0).ID);
+            otherUserDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.child("Connection").child("Yeps").hasChild(currentUId) || snapshot.child("Connection").child("Nope").hasChild(currentUId)){
+                        rowItems.remove(0);
+                        arrayAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+    }
 }
