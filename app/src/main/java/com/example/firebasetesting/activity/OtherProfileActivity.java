@@ -3,6 +3,7 @@ package com.example.firebasetesting.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,17 +34,14 @@ public class OtherProfileActivity extends AppCompatActivity {
     FloatingActionButton mLike, mDislike;
     String otherID;
     String userID;
-    private SharedPreferences mPreferences;
-    private String sharedPrefFile =
-            "com.example.android.hellosharedprefs";
+    public static final String EXTRA_REPLY =
+            "com.example.android.twoactivities.extra.REPLY";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_profile);
-
-        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         mAvatar = findViewById(R.id.avatar);
         mName = findViewById(R.id.name);
@@ -55,6 +53,8 @@ public class OtherProfileActivity extends AppCompatActivity {
 
         otherID = getIntent().getExtras().get("otherID").toString();
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
         DAOUser daoUser = new DAOUser();
         UserInfo otherProfile;
         daoUser.getUserInfo(otherID);
@@ -93,7 +93,6 @@ public class OtherProfileActivity extends AppCompatActivity {
                                 Glide.with(getApplication()).load(profileImageUrl).into(mAvatar);
                                 break;
                         }
-                        //Glide.with(getApplication()).load(profileImageUrl).into(mAvatar);
                     }
                 }
             }
@@ -107,21 +106,27 @@ public class OtherProfileActivity extends AppCompatActivity {
 
     public void swipeLeft(View view) {
         mUserDB.child(otherID).child("Connection").child("Nope").child(userID).setValue(true);
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-        preferencesEditor.putString("otherID", otherID);
-        preferencesEditor.apply();
+
+        Intent replyIntent = new Intent();
+        replyIntent.putExtra(EXTRA_REPLY, otherID);
+        setResult(RESULT_OK, replyIntent);
         finish();
     }
 
     public void swipeRight(View view) {
         mUserDB.child(otherID).child("Connection").child("Yeps").child(userID).setValue(true);
-        isConnectionMatch(otherID);
-        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
-        preferencesEditor.putString("otherID", otherID);
-        preferencesEditor.apply();
+        isConnectionMatch();
+
+        Intent replyIntent = new Intent();
+        replyIntent.putExtra(EXTRA_REPLY, otherID);
+        setResult(RESULT_OK, replyIntent);
+        finish();
     }
 
-    private void isConnectionMatch(String userID) {
+    private void isConnectionMatch() {
+        Log.d("Matches", otherID);
+        Log.d("Matches", userID);
+
         DatabaseReference currentUserConnectionDB = mUserDB.child(userID).child("Connection").child("Yeps").child(otherID);
         currentUserConnectionDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -130,7 +135,6 @@ public class OtherProfileActivity extends AppCompatActivity {
                     Toast.makeText(OtherProfileActivity.this, "It's a match", Toast.LENGTH_SHORT).show();
 
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
-
                     mUserDB.child(snapshot.getKey()).child("Connection").child("Matches").child(userID).child("ChatID").setValue(key);
                     mUserDB.child(userID).child("Connection").child("Matches").child(snapshot.getKey()).child("ChatID").setValue(key);
                 }

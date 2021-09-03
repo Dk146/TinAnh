@@ -54,13 +54,16 @@ public class DAOUser {
     }
 
     public void getLikedUserID(String mCurrentUserID, LinkedList<UserInfo> likedList,RecyclerView.Adapter mLikedAdapter) {
-        DatabaseReference likedDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mCurrentUserID).child("Connection").child("Yeps");
+        DatabaseReference likedDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mCurrentUserID).child("Connection");
         likedDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    for (DataSnapshot liked : snapshot.getChildren()) {
-                        fetchInfo(liked.getKey(), likedList, mLikedAdapter);
+                    for (DataSnapshot liked : snapshot.child("Yeps").getChildren()) {
+                        Log.d("Yeps", "user");
+                        if (!snapshot.child("Matches").hasChild(liked.getKey())) {
+                            fetchInfo(liked.getKey(), likedList, mLikedAdapter);
+                        }
                     }
                 }
             }
@@ -123,10 +126,10 @@ public class DAOUser {
                 if (snapshot.child("ProfileImageUrl") != null) {
                     profileImageUrl = snapshot.child("ProfileImageUrl").getValue().toString();
                 }
-                if (snapshot.child("JobTitle") != null) {
+                if (snapshot.hasChild("JobTitle")) {
                     jobTitle = snapshot.child("JobTitle").getValue().toString();
                 }
-                if (snapshot.child("Description") != null) {
+                if (snapshot.hasChild("Description")) {
                     description = snapshot.child("Description").getValue().toString();
                 }
                 Log.d("Name", name);

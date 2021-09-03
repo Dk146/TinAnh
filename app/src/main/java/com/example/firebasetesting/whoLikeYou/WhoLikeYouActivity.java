@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.firebasetesting.DAOUser;
@@ -18,6 +19,7 @@ import com.example.firebasetesting.ItemArrayAdapter;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
 import com.example.firebasetesting.activity.MainActivity;
+import com.example.firebasetesting.activity.OtherProfileActivity;
 import com.example.firebasetesting.activity.SettingActivity;
 import com.example.firebasetesting.matches.MatchesActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,9 +39,11 @@ public class WhoLikeYouActivity extends AppCompatActivity {
     LinkedList<UserInfo> likedList = new LinkedList<>();
     RecyclerView mRecyclerView;
     LikedAdapter mLikedAdapter;
-    private SharedPreferences mPreferences;
-    private String sharedPrefFile =
-            "com.example.android.hellosharedprefs";
+    public static final String EXTRA_MESSAGE
+            = "com.example.android.twoactivities.extra.MESSAGE";
+    // Unique tag for the intent reply
+    public static final int TEXT_REQUEST = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +94,19 @@ public class WhoLikeYouActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        String otherID = mPreferences.getString("otherID", "Null");
-        if (!otherID.equals("Null")) {
-            for (UserInfo userInfo : likedList) {
-                if (userInfo.ID == mCurrentUserID) {
-                    likedList.remove(userInfo);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Test for the right intent reply.
+        if (requestCode == TEXT_REQUEST) {
+            // Test to make sure the intent reply result was good.
+            if (resultCode == RESULT_OK) {
+                String reply = data.getStringExtra(OtherProfileActivity.EXTRA_REPLY);
+                for (int i = 0; i < likedList.size(); ++i) {
+                    if (likedList.get(i).ID.equals(reply)) {
+                        likedList.remove(i);
+                        mLikedAdapter.notifyDataSetChanged();
+                    }
                 }
             }
         }
