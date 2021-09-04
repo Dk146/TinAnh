@@ -15,9 +15,11 @@
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_who_like_you.xml" value="0.22666666666666666" />
         <entry key="app/src/main/res/layout/item.xml" value="0.22666666666666666" />
+        <entry key="app/src/main/res/layout/item_buble.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/item_chat.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/item_liked.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/item_matches.xml" value="0.23020833333333332" />
+        <entry key="app/src/main/res/layout/item_rcv.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/temp_setting.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.23020833333333332" />
       </map>

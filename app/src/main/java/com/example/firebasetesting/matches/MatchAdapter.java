@@ -36,6 +36,29 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
         this.context = context;
     }
 
+    @NonNull
+    @Override
+    public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View mItemArrayAdapter = mInflater.inflate(R.layout.item_matches, parent, false);
+        return new MatchViewHolder(mItemArrayAdapter, this);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
+        UserInfo mCurrent = mMatch_list.get(position);
+
+        holder.mName.setText(mCurrent.name);
+        holder.mMatchID = mCurrent.ID;
+        if (!mCurrent.getProfileImageUrl().equals("default")){
+            Glide.with(context).load(mCurrent.getProfileImageUrl()).into(holder.mMatchImg);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return mMatch_list.size();
+    }
+
     public class MatchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView mMatchImg;
         String mMatchID;
@@ -58,29 +81,5 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
             intent.putExtras(b);
             view.getContext().startActivity(intent);
         }
-    }
-
-    @NonNull
-    @Override
-    public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemArrayAdapter = mInflater.inflate(R.layout.item_matches, parent, false);
-        return new MatchViewHolder(mItemArrayAdapter, this);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
-        UserInfo mCurrent = mMatch_list.get(position);
-
-        holder.mName.setText(mCurrent.name);
-        holder.mMatchID = mCurrent.ID;
-        if (!mCurrent.getProfileImageUrl().equals("default")){
-            Glide.with(context).load(mCurrent.getProfileImageUrl()).into(holder.mMatchImg);
-        }
-    }
-
-
-    @Override
-    public int getItemCount() {
-        return mMatch_list.size();
     }
 }

@@ -75,13 +75,17 @@ public class OtherProfileActivity extends AppCompatActivity {
                         name = map.get("Name").toString();
                         mName.setText(name);
                     }
-                    if (map.get("Description") != null){
+                    if (map.get("Description") != null && !map.get("Description").equals("")){
                         description = map.get("Description").toString();
                         mDescription.setText(description);
+                    } else {
+                        mDescription.setVisibility(View.GONE);
                     }
-                    if (map.get("JobTitle") != null){
+                    if (map.get("JobTitle") != null && !map.get("JobTitle").equals("")){
                         jobTitle = map.get("JobTitle").toString();
                         mJobTitle.setText(jobTitle);
+                    } else {
+                        mJobTitle.setVisibility(View.GONE);
                     }
                     if (map.get("ProfileImageUrl") != null){
                         profileImageUrl = map.get("ProfileImageUrl").toString();

@@ -6,6 +6,7 @@ import android.widget.Adapter;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.firebasetesting.matches.MatchAdapter;
 import com.example.firebasetesting.whoLikeYou.LikedAdapter;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +34,31 @@ public class DAOUser {
         Info.put("Sex", userInfo.sex);
         Info.put("ProfileImageUrl", userInfo.profileImageUrl);
         return databaseReference.child(userInfo.ID).updateChildren(Info);
+    }
+
+    public void getUsersMatchMessageID(String mCurrentUserID, LinkedList<UserInfo> likedList, RecyclerView.Adapter mLikedAdapter) {
+        DatabaseReference matchesDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mCurrentUserID).child("Connection").child("Matches");
+        matchesDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot match : snapshot.getChildren()){
+                        if (snapshot.child(match.getKey()).hasChild("Status")) {
+                            Log.d("STATUS", match.getKey());
+                            String status = snapshot.child(match.getKey()).child("Status").getValue().toString();
+                            if (status.equals("true")) {
+                                fetchInfo(match.getKey(), likedList, mLikedAdapter);
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void getUsersMatchID(String mCurrentUserID, LinkedList<UserInfo> likedList,RecyclerView.Adapter mLikedAdapter) {
@@ -96,6 +122,7 @@ public class DAOUser {
 
                 UserInfo userInfo = new UserInfo(userID, name, sex, profileImageUrl);
                 likedList.add(userInfo);
+                Log.d("MATCHES", name);
                 mLikedAdapter.notifyDataSetChanged();
             }
 

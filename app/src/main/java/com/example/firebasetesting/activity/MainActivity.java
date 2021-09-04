@@ -176,9 +176,11 @@ public class MainActivity extends AppCompatActivity {
 
                     //userDB.child(snapshot.getKey()).child("Connection").child("Matches").child(currentUId).setValue(true);
                     userDB.child(snapshot.getKey()).child("Connection").child("Matches").child(currentUId).child("ChatID").setValue(key);
-
                     //userDB.child(currentUId).child("Connection").child("Matches").child(snapshot.getKey()).setValue(true);
                     userDB.child(currentUId).child("Connection").child("Matches").child(snapshot.getKey()).child("ChatID").setValue(key);
+                    userDB.child(currentUId).child("Connection").child("Matches").child(snapshot.getKey()).child("Status").setValue(false);
+                    userDB.child(snapshot.getKey()).child("Connection").child("Matches").child(currentUId).child("Status").setValue(false);
+
                 }
             }
 
@@ -287,4 +289,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 }

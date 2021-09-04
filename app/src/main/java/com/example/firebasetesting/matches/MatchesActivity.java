@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.firebasetesting.DAOUser;
@@ -27,8 +28,11 @@ import java.util.LinkedList;
 
 public class MatchesActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerViewHorizontal;
     private MatchAdapter matchAdapter;
+    private BubbleMatchAdapter mBubbleMatchAdapter;
     private LinkedList<UserInfo> mMatchList = new LinkedList<>();
+    private LinkedList<UserInfo> mHasMessageList = new LinkedList<>();
     private String mCurrentUserID;
 
     @Override
@@ -42,12 +46,28 @@ public class MatchesActivity extends AppCompatActivity {
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        matchAdapter = new MatchAdapter(this, mMatchList);
+        matchAdapter = new MatchAdapter(this, mHasMessageList);
+        mBubbleMatchAdapter = new BubbleMatchAdapter(this, mMatchList);
+
+        DAOUser daoUser = new DAOUser();
+        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
+        daoUser.getUsersMatchID(mCurrentUserID, mMatchList, mBubbleMatchAdapter);
+
+        //matchAdapter = new MatchAdapter(this, mMatchList);
         mRecyclerView.setAdapter(matchAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        DAOUser daoUser = new DAOUser();
-        daoUser.getUsersMatchID(mCurrentUserID, mMatchList, matchAdapter);
+        mRecyclerViewHorizontal = (RecyclerView) findViewById(R.id.horizontal_only);
+        mRecyclerViewHorizontal.setNestedScrollingEnabled(false);
+        mRecyclerViewHorizontal.setHasFixedSize(true);
+
+
+        //mBubbleMatchAdapter = new BubbleMatchAdapter(this, mMatchList);
+        mRecyclerViewHorizontal.setAdapter(mBubbleMatchAdapter);
+        mRecyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
+
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setSelectedItemId(R.id.matches);
@@ -73,5 +93,22 @@ public class MatchesActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d("OnContinue", "restart");
+        DAOUser daoUser = new DAOUser();
+        mHasMessageList.clear();
+        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(matchAdapter);
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("OnContinue", "resume");
+        super.onResume();
     }
 }

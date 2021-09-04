@@ -71,6 +71,10 @@ public class ChatActivity extends AppCompatActivity {
         if (!sendMessageText.isEmpty()){
             DatabaseReference newMessageDB = mDBChat.push();
 
+            DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child("UserInfo");
+            userDB.child(mCurrentUserID).child("Connection").child("Matches").child(matchID).child("Status").setValue(true);
+            userDB.child(matchID).child("Connection").child("Matches").child(mCurrentUserID).child("Status").setValue(true);
+
             Map newMessage = new HashMap();
             newMessage.put("CreateByUser", mCurrentUserID);
             newMessage.put("Text", sendMessageText);
