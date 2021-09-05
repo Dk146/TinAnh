@@ -69,30 +69,30 @@ public class MatchesActivity extends AppCompatActivity {
 
 
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
-        bottomNavigationView.setSelectedItemId(R.id.matches);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        startActivity(new Intent(MatchesActivity.this, MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.matches:
-                        return true;
-                    case R.id.liked:
-                        startActivity(new Intent(MatchesActivity.this, WhoLikeYouActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.setting:
-                        startActivity(new Intent(MatchesActivity.this, SettingActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
-            }
-        });
+//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+//        bottomNavigationView.setSelectedItemId(R.id.matches);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.home:
+//                        startActivity(new Intent(MatchesActivity.this, MainActivity.class));
+//                        overridePendingTransition(0, 0);
+//                        return true;
+//                    case R.id.matches:
+//                        return true;
+//                    case R.id.liked:
+//                        startActivity(new Intent(MatchesActivity.this, WhoLikeYouActivity.class));
+//                        overridePendingTransition(0, 0);
+//                        return true;
+//                    case R.id.setting:
+//                        startActivity(new Intent(MatchesActivity.this, SettingActivity.class));
+//                        overridePendingTransition(0, 0);
+//                        return true;
+//                }
+//                return false;
+//            }
+//        });
     }
 
     @Override

@@ -31,9 +31,9 @@ public class LoginRegisterActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(LoginRegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginRegisterActivity.this, HomePageActivity.class);
                     startActivity(intent);
-                    finish();
+                    //finish();
                     return;
                 }
             }

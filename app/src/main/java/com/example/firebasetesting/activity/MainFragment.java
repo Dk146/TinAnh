@@ -2,24 +2,22 @@ package com.example.firebasetesting.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.firebasetesting.ItemArrayAdapter;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
-import com.example.firebasetesting.matches.MatchesActivity;
-import com.example.firebasetesting.whoLikeYou.WhoLikeYouActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -32,11 +30,14 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
-
-    private ItemArrayAdapter arrayAdapter;
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link MainFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class MainFragment extends Fragment {
+    public ItemArrayAdapter arrayAdapter;
     private UserInfo userInfo[];
 
     SwipeFlingAdapterView flingAdapterView;
@@ -52,24 +53,44 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     List<UserInfo> rowItems;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public MainFragment() {
 
+    }
+
+
+    // TODO: Rename and change types and number of parameters
+    public static MainFragment newInstance(String param1, String param2) {
+        MainFragment fragment = new MainFragment();
+        Bundle args = new Bundle();
+
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_main, container, false);
         mAuth = FirebaseAuth.getInstance();
         currentUId = mAuth.getCurrentUser().getUid();
         userDB = FirebaseDatabase.getInstance().getReference().child("UserInfo");
 
         checkUserSex();
 
-        like = (Button) findViewById(R.id.like);
-        dislike = (Button) findViewById(R.id.dislike);
-        flingAdapterView = findViewById(R.id.swipe);
+        like = (Button) view.findViewById(R.id.like);
+        dislike = (Button) view.findViewById(R.id.dislike);
+        flingAdapterView = view.findViewById(R.id.swipe);
 
         rowItems = new ArrayList<UserInfo>();
-
-        arrayAdapter = new ItemArrayAdapter(MainActivity.this, R.layout.item, rowItems);
+        arrayAdapter = new ItemArrayAdapter(view.getContext(), R.layout.item, rowItems);
 
         flingAdapterView.setAdapter(arrayAdapter);
         flingAdapterView.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -114,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClicked(int i, Object o) {
                 Log.d("Clicked", "Clicked");
                 UserInfo otherUser = (UserInfo) o;
-                Intent intent = new Intent(MainActivity.this, OtherProfileActivity.class);
+                Intent intent = new Intent(view.getContext(), OtherProfileActivity.class);
                 Bundle b = new Bundle();
                 b.putString("otherID", otherUser.ID);
                 intent.putExtras(b);
@@ -136,30 +157,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
-//        bottomNavigationView.setSelectedItemId(R.id.home);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.home:
-//                        return true;
-//                    case R.id.matches:
-//                        startActivity(new Intent(MainActivity.this, MatchesActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//                    case R.id.liked:
-//                        startActivity(new Intent(MainActivity.this, WhoLikeYouActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//                    case R.id.setting:
-//                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//                }
-//                return false;
-//            }
-//        });
+
+        return view;
     }
 
     private void isConnectionMatch(String userID) {
@@ -168,8 +167,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Toast.makeText(MainActivity.this, "It's a match", Toast.LENGTH_SHORT).show();
-
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
                     //userDB.child(snapshot.getKey()).child("Connection").child("Matches").child(currentUId).setValue(true);
@@ -178,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
                     userDB.child(currentUId).child("Connection").child("Matches").child(snapshot.getKey()).child("ChatID").setValue(key);
                     userDB.child(currentUId).child("Connection").child("Matches").child(snapshot.getKey()).child("Status").setValue(false);
                     userDB.child(snapshot.getKey()).child("Connection").child("Matches").child(currentUId).child("Status").setValue(false);
-
                 }
             }
 
@@ -259,13 +255,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
+        Log.d("OnresumeFragment", "OnresumeFragment");
         if (rowItems.size() != 0) {
             DatabaseReference otherUserDB = userDB.child(rowItems.get(0).ID);
             otherUserDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -276,14 +268,11 @@ public class MainActivity extends AppCompatActivity {
                         arrayAdapter.notifyDataSetChanged();
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
                 }
             });
 
         }
     }
-
 }

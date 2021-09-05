@@ -1,31 +1,28 @@
 package com.example.firebasetesting.activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.provider.MediaStore;
-import android.util.Log;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasetesting.R;
-import com.example.firebasetesting.matches.MatchesActivity;
-import com.example.firebasetesting.whoLikeYou.WhoLikeYouActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +38,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SettingActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link SettingFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class SettingFragment extends Fragment {
+    private static final int RESULT_OK = -1;
     private EditText mName, mPhoneNumber, mDescription, mJobTitle;
     private Button btn_back, btn_confirm;
     private ImageView mAvatar;
@@ -50,19 +53,41 @@ public class SettingActivity extends AppCompatActivity {
     private String userID, name, phoneNumber, profileImageUrl, userSex, description, jobTitle;
     private Uri resultUri;
 
+    public SettingFragment() {
+        // Required empty public constructor
+    }
+
+    // TODO: Rename and change types and number of parameters
+    public static SettingFragment newInstance(String param1, String param2) {
+        SettingFragment fragment = new SettingFragment();
+        Bundle args = new Bundle();
+
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        if (getArguments() != null) {
 
-        mName = findViewById(R.id.name);
-        mPhoneNumber = findViewById(R.id.phone);
-        mAvatar = findViewById(R.id.avatar);
-        mDescription = findViewById(R.id.description);
-        mJobTitle = findViewById(R.id.jobTitle);
+        }
+    }
 
-        btn_back = findViewById(R.id.back_button);
-        btn_confirm = findViewById(R.id.confirm_button);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.activity_setting, container, false);
+
+        mName = view.findViewById(R.id.name);
+        mPhoneNumber = view.findViewById(R.id.phone);
+        mAvatar = view.findViewById(R.id.avatar);
+        mDescription = view.findViewById(R.id.description);
+        mJobTitle = view.findViewById(R.id.jobTitle);
+
+        btn_back = view.findViewById(R.id.back_button);
+        btn_confirm = view.findViewById(R.id.confirm_button);
 
         mAvatar.setImageResource(R.drawable.tinder_app);
 
@@ -80,30 +105,7 @@ public class SettingActivity extends AppCompatActivity {
 
         btn_confirm.setOnClickListener(v -> saveUserInformation());
 
-//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
-//        bottomNavigationView.setSelectedItemId(R.id.setting);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.home:
-//                        startActivity(new Intent(SettingActivity.this, MainActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//                    case R.id.matches:
-//                        startActivity(new Intent(SettingActivity.this, MatchesActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//                    case R.id.liked:
-//                        startActivity(new Intent(SettingActivity.this, WhoLikeYouActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//                    case R.id.setting:
-//                        return true;
-//                }
-//                return false;
-//            }
-//        });
+        return view;
     }
 
     private void displayUserInfo() {
@@ -135,10 +137,10 @@ public class SettingActivity extends AppCompatActivity {
                         profileImageUrl = map.get("ProfileImageUrl").toString();
                         switch (profileImageUrl){
                             case "default":
-                                Glide.with(getApplication()).load(R.drawable.tinder_app).into(mAvatar);
+                                Glide.with(getActivity().getApplication()).load(R.drawable.tinder_app).into(mAvatar);
                                 break;
                             default:
-                                Glide.with(getApplication()).load(profileImageUrl).into(mAvatar);
+                                Glide.with(getActivity().getApplication()).load(profileImageUrl).into(mAvatar);
                                 break;
                         }
                         //Glide.with(getApplication()).load(profileImageUrl).into(mAvatar);
@@ -170,7 +172,7 @@ public class SettingActivity extends AppCompatActivity {
             Bitmap bitmap = null;
 
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(), resultUri);
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplication().getContentResolver(), resultUri);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -182,7 +184,7 @@ public class SettingActivity extends AppCompatActivity {
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    finish();
+                    getActivity().finish();
                 }
             });
 
@@ -203,7 +205,7 @@ public class SettingActivity extends AppCompatActivity {
                         Uri downloadUrl = task.getResult();
                         Map userInfo = new HashMap();
                         mUserDB.updateChildren(userInfo);
-                        finish();
+                        getActivity().finish();
                         return;
                     } else {
 
@@ -212,13 +214,13 @@ public class SettingActivity extends AppCompatActivity {
             });
 
         }else{
-            //finish();
+            getActivity().finish();
         }
 
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK){
             final Uri imageUri = data.getData();
@@ -229,9 +231,9 @@ public class SettingActivity extends AppCompatActivity {
 
     public void logoutUser(View view) {
         mAuth.signOut();
-        Intent intent = new Intent(SettingActivity.this, LoginRegisterActivity.class);
+        Intent intent = new Intent(view.getContext(), LoginRegisterActivity.class);
         startActivity(intent);
-        finish();
+        getActivity().finish();
         return;
     }
 }

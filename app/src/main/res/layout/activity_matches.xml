@@ -29,15 +29,15 @@
         </androidx.recyclerview.widget.RecyclerView>
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/teal_200"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/menu_navigation"
-        android:id="@+id/bottomNav">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:itemBackground="@color/teal_200"-->
+<!--        app:itemIconTint="@drawable/selector"-->
+<!--        app:itemTextColor="@drawable/selector"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        app:menu="@menu/menu_navigation"-->
+<!--        android:id="@+id/bottomNav">-->
+<!--    </com.google.android.material.bottomnavigation.BottomNavigationView>-->
 
 </RelativeLayout>

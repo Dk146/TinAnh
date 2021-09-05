@@ -67,48 +67,30 @@ public class WhoLikeYouActivity extends AppCompatActivity {
         daoUser.getLikedUserID(mCurrentUserID, likedList, mLikedAdapter);
 
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
-        bottomNavigationView.setSelectedItemId(R.id.liked);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        startActivity(new Intent(WhoLikeYouActivity.this, MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.matches:
-                        startActivity(new Intent(WhoLikeYouActivity.this, MatchesActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.liked:
-                        return true;
-                    case R.id.setting:
-                        startActivity(new Intent(WhoLikeYouActivity.this, SettingActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
-            }
-        });
+//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+//        bottomNavigationView.setSelectedItemId(R.id.liked);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.home:
+//                        startActivity(new Intent(WhoLikeYouActivity.this, MainActivity.class));
+//                        overridePendingTransition(0, 0);
+//                        return true;
+//                    case R.id.matches:
+//                        startActivity(new Intent(WhoLikeYouActivity.this, MatchesActivity.class));
+//                        overridePendingTransition(0, 0);
+//                        return true;
+//                    case R.id.liked:
+//                        return true;
+//                    case R.id.setting:
+//                        startActivity(new Intent(WhoLikeYouActivity.this, SettingActivity.class));
+//                        overridePendingTransition(0, 0);
+//                        return true;
+//                }
+//                return false;
+//            }
+//        });
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Test for the right intent reply.
-        if (requestCode == TEXT_REQUEST) {
-            // Test to make sure the intent reply result was good.
-            if (resultCode == RESULT_OK) {
-                String reply = data.getStringExtra(OtherProfileActivity.EXTRA_REPLY);
-                for (int i = 0; i < likedList.size(); ++i) {
-                    if (likedList.get(i).ID.equals(reply)) {
-                        likedList.remove(i);
-                        mLikedAdapter.notifyDataSetChanged();
-                    }
-                }
-            }
-        }
-    }
 }
