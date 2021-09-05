@@ -46,7 +46,7 @@ import java.util.Map;
 public class SettingFragment extends Fragment {
     private static final int RESULT_OK = -1;
     private EditText mName, mPhoneNumber, mDescription, mJobTitle;
-    private Button btn_back, btn_confirm;
+    private Button btn_back, btn_confirm, btn_logout;
     private ImageView mAvatar;
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDB;
@@ -85,6 +85,7 @@ public class SettingFragment extends Fragment {
         mAvatar = view.findViewById(R.id.avatar);
         mDescription = view.findViewById(R.id.description);
         mJobTitle = view.findViewById(R.id.jobTitle);
+        btn_logout = view.findViewById(R.id.logOut);
 
         btn_back = view.findViewById(R.id.back_button);
         btn_confirm = view.findViewById(R.id.confirm_button);
@@ -104,6 +105,7 @@ public class SettingFragment extends Fragment {
         });
 
         btn_confirm.setOnClickListener(v -> saveUserInformation());
+        btn_logout.setOnClickListener(v -> logoutUser(view));
 
         return view;
     }

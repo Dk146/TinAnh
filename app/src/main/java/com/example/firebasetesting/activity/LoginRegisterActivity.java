@@ -14,7 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginRegisterActivity extends AppCompatActivity {
-    public Button login, register;
+    public Button register;
+    TextView login;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
