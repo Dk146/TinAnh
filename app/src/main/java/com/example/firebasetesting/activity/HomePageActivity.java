@@ -12,6 +12,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.matches.MatchesActivity;
@@ -19,6 +21,7 @@ import com.example.firebasetesting.whoLikeYou.WhoLikeYouActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomePageActivity extends AppCompatActivity {
+    public ImageView [] indicator;
     private static final int TEXT_REQUEST = 1;
     ViewPager2 viewPager2;
     FragmentStateAdapter adapter;
@@ -30,8 +33,18 @@ public class HomePageActivity extends AppCompatActivity {
         adapter = new ScreenSlideBaseAdapter(this);
 
         viewPager2.setAdapter(adapter);
+        indicator = new ImageView[4];
+        indicator[0] = findViewById(R.id.indicator0);
+        indicator[1] = findViewById(R.id.indicator1);
+        indicator[2] = findViewById(R.id.indicator2);
+        indicator[3] = findViewById(R.id.indicator3);
+
+        for (int k = 1; k < 4; k++){
+            indicator[k].setVisibility(View.INVISIBLE);
+        }
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -39,20 +52,35 @@ public class HomePageActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         viewPager2.setCurrentItem(0, true);
+                        setIndicator(0);
                         return true;
                     case R.id.matches:
                         viewPager2.setCurrentItem(1, true);
+                        setIndicator(1);
                         return true;
                     case R.id.liked:
                         viewPager2.setCurrentItem(2, true);
+                        setIndicator(2);
                         return true;
                     case R.id.setting:
                         viewPager2.setCurrentItem(3, true);
+                        setIndicator(3);
                         return true;
                 }
                 return false;
             }
         });
+    }
+
+    private void setIndicator(int i) {
+        for (int k = 0; k < 4; k++){
+            if(k==i){
+                indicator[k].setVisibility(View.VISIBLE);
+            }
+            else {
+                indicator[k].setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
     private class ScreenSlideBaseAdapter extends FragmentStateAdapter{
