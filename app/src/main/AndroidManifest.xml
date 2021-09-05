@@ -7,10 +7,13 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="TinAnh"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseTesting">
+        <activity
+            android:name=".activity.ViewOnlyActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.OtherProfileActivity"
             android:exported="true" />

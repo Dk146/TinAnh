@@ -6,12 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.firebasetesting.DAOUser;
 import com.example.firebasetesting.R;
+import com.example.firebasetesting.UserInfo;
+import com.example.firebasetesting.activity.ViewOnlyActivity;
 import com.example.firebasetesting.matches.MatchAdapter;
 import com.example.firebasetesting.matches.MatchesObject;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,8 +41,13 @@ public class ChatActivity extends AppCompatActivity {
     private LinkedList<ChatObject> mChatList = new LinkedList<ChatObject>();
     private String mCurrentUserID, matchID, chatID;
     private EditText mSendEditText;
+    private ImageView mAvatar;
+    private TextView mName;
+    String textName;
     private Button mSendBtn;
     private DatabaseReference mDBUser, mDBChat;
+    LinearLayoutManager linearLayoutManager;
+    LinearLayout mInfoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +60,11 @@ public class ChatActivity extends AppCompatActivity {
         mDBChat = FirebaseDatabase.getInstance().getReference().child("Chat");
 
         getChatID();
+        getUserMatchView();
 
         mSendBtn = findViewById(R.id.send);
         mSendEditText = findViewById(R.id.message);
+        mInfoView = findViewById(R.id.infoView);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -56,12 +72,59 @@ public class ChatActivity extends AppCompatActivity {
 
         mChatAdapter = new ChatAdapter(this, mChatList);
         mRecyclerView.setAdapter(mChatAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
         mSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendMessage();
+            }
+        });
+
+        mInfoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChatActivity.this, ViewOnlyActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("otherID", matchID);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void getUserMatchView() {
+        mAvatar = findViewById(R.id.avatar);
+        mName = findViewById(R.id.name);
+        DatabaseReference matchDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(matchID);
+        matchDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
+                    Map<String, Object> map = (Map<String, Object>) snapshot.getValue();
+                    Log.d("Username", snapshot.getKey());
+                    if (map.get("Name") != null) {
+                        textName = map.get("Name").toString();
+                        mName.setText(textName);
+                    }
+                    if (map.get("ProfileImageUrl") != null){
+                        String profileImageUrl = map.get("ProfileImageUrl").toString();
+                        switch (profileImageUrl){
+                            case "default":
+                                Glide.with(getApplication()).load(R.drawable.tinder_app).into(mAvatar);
+                                break;
+                            default:
+                                Glide.with(getApplication()).load(profileImageUrl).into(mAvatar);
+                                break;
+                        }
+                    }                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
@@ -124,10 +187,12 @@ public class ChatActivity extends AppCompatActivity {
                         }
                         ChatObject newMessage = new ChatObject(message, currentUserBoolean);
                         mChatList.add(newMessage);
+                        linearLayoutManager.setStackFromEnd(true);
                         mChatAdapter.notifyDataSetChanged();
                     }
                 }
             }
+
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
