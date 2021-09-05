@@ -20,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemBackground="@color/teal_200"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector_home"
+        app:itemTextColor="@drawable/selector_home"
         android:layout_alignParentBottom="true"
         app:menu="@menu/menu_navigation"
         android:id="@+id/bottomNav">

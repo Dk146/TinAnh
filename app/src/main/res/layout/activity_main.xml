@@ -48,9 +48,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/teal_200"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
+        android:layout_marginBottom="-1dp"
+        app:backgroundTint="#F3F3F3"
+        app:itemIconTint="@drawable/selector_home"
+        app:itemTextColor="@drawable/selector_home"
         app:menu="@menu/menu_navigation"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
