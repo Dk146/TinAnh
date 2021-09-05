@@ -59,10 +59,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         Log.d("ChatMessage", mChat_list.get(position).getMessage());
         if (mChat_list.get(position).getCurrentUser()) {
             holder.mMessage.setGravity(Gravity.END);
-            holder.mMessage.setBackgroundColor(Color.parseColor("#8db0e0"));
+            holder.mContainer.setBackgroundColor(Color.parseColor("#8db0e0"));
         } else {
             holder.mMessage.setGravity(Gravity.START);
-            holder.mMessage.setBackgroundColor(Color.parseColor("#bec4cc"));
+            holder.mContainer.setBackgroundColor(Color.parseColor("#bec4cc"));
         }
     }
 
