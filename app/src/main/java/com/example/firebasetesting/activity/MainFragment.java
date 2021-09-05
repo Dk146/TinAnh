@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class MainFragment extends Fragment {
     private UserInfo userInfo[];
 
     SwipeFlingAdapterView flingAdapterView;
-    private Button like, dislike;
+    private ImageView like, dislike;
 
     private FirebaseAuth mAuth;
     private DatabaseReference userDB;
@@ -85,8 +86,8 @@ public class MainFragment extends Fragment {
 
         checkUserSex();
 
-        like = (Button) view.findViewById(R.id.like);
-        dislike = (Button) view.findViewById(R.id.dislike);
+        like = (ImageView) view.findViewById(R.id.like);
+        dislike = (ImageView) view.findViewById(R.id.dislike);
         flingAdapterView = view.findViewById(R.id.swipe);
 
         rowItems = new ArrayList<UserInfo>();
