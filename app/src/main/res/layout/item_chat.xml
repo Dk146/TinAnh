@@ -8,6 +8,8 @@
         android:id="@+id/container"
         android:layout_margin="5dp"
         android:gravity="right">
+        android:padding="10dp"
+        android:backgroundTint="#F3F3F3">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

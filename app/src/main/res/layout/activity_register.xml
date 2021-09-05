@@ -8,10 +8,10 @@
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="wrap_content"
+        android:layout_width="295dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:background="#c9574f"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -24,11 +24,12 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
+        android:layout_width="295dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:backgroundTint="#c9574f"
+        android:background="@drawable/custombutton"
         android:text="Register"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,10 +37,10 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
+        android:layout_width="295dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:background="#c9574f"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -86,17 +87,24 @@
             android:layout_weight="1"
             android:text="Female"
             android:padding="10dp"/>
+        <RadioButton
+        android:id="@+id/radioButtonAnother"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Other"
+        android:padding="10dp"/>
     </RadioGroup>
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="295dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name"
-        android:background="#c9574f"
+        android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
