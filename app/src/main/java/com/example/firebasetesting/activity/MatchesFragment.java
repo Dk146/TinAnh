@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,5 +92,14 @@ public class MatchesFragment extends Fragment {
         mRecyclerViewHorizontal.setAdapter(mBubbleMatchAdapter);
         mRecyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
 
+    }
+
+    @Override
+    public void onResume() {
+        DAOUser daoUser = new DAOUser();
+        mHasMessageList.clear();
+        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
+        mRecyclerView.setAdapter(matchAdapter);
+        super.onResume();
     }
 }
