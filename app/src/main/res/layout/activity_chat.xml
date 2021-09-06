@@ -11,8 +11,9 @@
         android:layout_height="80dp"
         android:id="@+id/infoView"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
-        <ImageView
+        android:gravity="center_vertical"
+        android:background="@drawable/card_message">
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
@@ -23,7 +24,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:text="name"
+            android:textColor="@color/white"
             android:id="@+id/name"/>
     </LinearLayout>
 
@@ -31,12 +35,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/sendLayout"
-        android:layout_below="@id/infoView">
+        android:layout_below="@id/infoView"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:scrollbars="vertical" />
     </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
@@ -44,18 +53,37 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:id="@+id/sendLayout">
+        android:id="@+id/sendLayout"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:hint="message"
-            android:id="@+id/message"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Send"
-            android:id="@+id/send"/>
+            android:hint="Your message"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:id="@+id/message"
+            android:background="@drawable/custom_input"
+            android:layout_marginEnd="10dp"
+            />
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/send_button">
+            <ImageView
+                android:backgroundTint="@color/red"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_send"
+                android:textColor="@color/white"
+                android:id="@+id/send"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+
     </LinearLayout>
 
 

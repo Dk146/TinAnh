@@ -44,7 +44,7 @@ public class ChatActivity extends AppCompatActivity {
     private ImageView mAvatar;
     private TextView mName;
     String textName;
-    private Button mSendBtn;
+    private ImageView mSendBtn;
     private DatabaseReference mDBUser, mDBChat;
     LinearLayoutManager linearLayoutManager;
     LinearLayout mInfoView;

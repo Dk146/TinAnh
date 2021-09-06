@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable-v24/message_bubble.xml" value="0.16794871794871793" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable-v24/message_bubble_partner.xml" value="0.16794871794871793" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable-v24/send_button.xml" value="0.16794871794871793" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/card_message.xml" value="0.17848101265822786" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/containẻ.xml" value="0.1125" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/custom_input.xml" value="0.1125" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/custombutton.xml" value="0.1125" />
@@ -20,20 +24,21 @@
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_message.xml" value="0.1859375" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_outline_thumb_up_alt_24.xml" value="0.18697916666666667" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_people.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_send.xml" value="0.16794871794871793" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_setting_active.xml" value="0.1125" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector.xml" value="0.18697916666666667" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector_home.xml" value="0.2169230769230769" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector_match.xml" value="0.1125" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector_message.xml" value="0.1125" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector_setting.xml" value="0.1125" />
-        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_chat.xml" value="0.22" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_home_page.xml" value="0.33" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_login_register.xml" value="0.22" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_matches.xml" value="0.1" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_matches.xml" value="0.18" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_register.xml" value="0.22" />
-        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_setting.xml" value="0.1" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_setting.xml" value="0.22" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/item.xml" value="0.1068840579710145" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/item_buble.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/item_chat.xml" value="0.15" />
