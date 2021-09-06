@@ -110,6 +110,7 @@ public class MatchesFragment extends Fragment {
     @Override
     public void onResume() {
         DAOUser daoUser = new DAOUser();
+        Log.d("LastMessage", "onResume");
         mHasMessageList.clear();
         mListLastMessage.clear();
         daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter, mListLastMessage);

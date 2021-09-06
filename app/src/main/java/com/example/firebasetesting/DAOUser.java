@@ -48,6 +48,7 @@ public class DAOUser {
                             String status = snapshot.child(match.getKey()).child("Status").getValue().toString();
                             if (status.equals("true")) {
                                 fetchInfo(match.getKey(), likedList, mLikedAdapter);
+                                Log.d("LastMessage", snapshot.child(match.getKey()).child("LastMessage").getValue().toString());
                                 listLastMessage.add(snapshot.child(match.getKey()).child("LastMessage").getValue().toString());
                             }
                         }
