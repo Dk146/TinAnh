@@ -2,6 +2,7 @@ package com.example.firebasetesting.chat;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -52,10 +53,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
         holder.mMessage.setText(mChat_list.get(position).getMessage());
         if (mChat_list.get(position).getCurrentUser()) {
-            holder.mMessage.setBackgroundColor(Color.parseColor("#8db0e0"));
+            holder.mMessage.setBackgroundResource(R.drawable.message_bubble);
         } else {
             holder.mContainer.setGravity(Gravity.LEFT);
-            holder.mMessage.setBackgroundColor(Color.parseColor("#bec4cc"));
+            holder.mMessage.setBackgroundResource(R.drawable.message_bubble_partner);
         }
     }
 
