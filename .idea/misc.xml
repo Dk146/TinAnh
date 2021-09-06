@@ -3,7 +3,48 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable-v24/message_bubble.xml" value="0.16794871794871793" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable-v24/message_bubble_partner.xml" value="0.16794871794871793" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable-v24/send_button.xml" value="0.16794871794871793" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/card_message.xml" value="0.17848101265822786" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/containẻ.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/custom_input.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/custombutton.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_accept.xml" value="0.1859375" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_dislike.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_favorite_off_indicator.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_favourite.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_home.xml" value="0.1859375" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_home_active.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1859375" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_like.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_message.xml" value="0.1859375" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_outline_thumb_up_alt_24.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_people.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_send.xml" value="0.16794871794871793" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/ic_setting_active.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector_home.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector_match.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector_message.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/drawable/selector_setting.xml" value="0.1125" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_chat.xml" value="0.25" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_home_page.xml" value="0.33" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_login.xml" value="0.18" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_login_register.xml" value="0.22" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_matches.xml" value="0.18" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/activity_setting.xml" value="0.22" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/item.xml" value="0.1068840579710145" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/item_buble.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/item_chat.xml" value="0.15" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/item_liked.xml" value="0.1" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/layout/item_matches.xml" value="0.25" />
+        <entry key="..\:/Users/MinhThu/Documents/GitHub/TinAnh/app/src/main/res/menu/menu_navigation.xml" value="0.17083333333333334" />
         <entry key="app/src/main/res/drawable/ic_favourite.xml" value="0.24256410256410257" />
         <entry key="app/src/main/res/drawable/ic_match.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/drawable/ic_match_active.xml" value="0.1111111111111111" />
@@ -14,24 +55,17 @@
         <entry key="app/src/main/res/drawable/selector_message.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/drawable/selector_setting.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.23020833333333332" />
-        <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_matches.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_other_profile.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.23020833333333332" />
-        <entry key="app/src/main/res/layout/activity_view_only.xml" value="0.2064814814814815" />
         <entry key="app/src/main/res/layout/activity_who_like_you.xml" value="0.22666666666666666" />
-        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.21614583333333334" />
-        <entry key="app/src/main/res/layout/fragment_matches.xml" value="0.23020833333333332" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/item.xml" value="0.22666666666666666" />
-        <entry key="app/src/main/res/layout/item_buble.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/item_chat.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/item_liked.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/item_matches.xml" value="0.23020833333333332" />
-        <entry key="app/src/main/res/layout/item_rcv.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/temp_setting.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.23020833333333332" />
       </map>
