@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -206,6 +207,7 @@ public class SettingFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Uri downloadUrl = task.getResult();
                         Map userInfo = new HashMap();
+                        userInfo.put("ProfileImageUrl", downloadUrl.toString());
                         mUserDB.updateChildren(userInfo);
                         getActivity().finish();
                         return;

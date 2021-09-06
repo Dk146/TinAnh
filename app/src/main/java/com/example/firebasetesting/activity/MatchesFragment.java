@@ -83,6 +83,9 @@ public class MatchesFragment extends Fragment {
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
+        mHasMessageList.clear();
+        mListLastMessage.clear();
+
         mDBChat = FirebaseDatabase.getInstance().getReference().child("Chat");
 
         matchAdapter = new MatchAdapter(view.getContext(), mHasMessageList, mListLastMessage);
@@ -110,7 +113,6 @@ public class MatchesFragment extends Fragment {
     @Override
     public void onResume() {
         DAOUser daoUser = new DAOUser();
-        Log.d("LastMessage", "onResume");
         mHasMessageList.clear();
         mListLastMessage.clear();
         daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter, mListLastMessage);

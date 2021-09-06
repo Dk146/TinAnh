@@ -44,11 +44,9 @@ public class DAOUser {
                 if (snapshot.exists()) {
                     for (DataSnapshot match : snapshot.getChildren()){
                         if (snapshot.child(match.getKey()).hasChild("Status")) {
-                            Log.d("STATUS", match.getKey());
                             String status = snapshot.child(match.getKey()).child("Status").getValue().toString();
                             if (status.equals("true")) {
                                 fetchInfo(match.getKey(), likedList, mLikedAdapter);
-                                Log.d("LastMessage", snapshot.child(match.getKey()).child("LastMessage").getValue().toString());
                                 listLastMessage.add(snapshot.child(match.getKey()).child("LastMessage").getValue().toString());
                             }
                         }
@@ -82,14 +80,14 @@ public class DAOUser {
     }
 
     public void getLikedUserID(String mCurrentUserID, LinkedList<UserInfo> likedList,RecyclerView.Adapter mLikedAdapter) {
-        DatabaseReference likedDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mCurrentUserID).child("Connection");
+        DatabaseReference likedDB = FirebaseDatabase.getInstance().getReference().child("UserInfo");
         likedDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    for (DataSnapshot liked : snapshot.child("Yeps").getChildren()) {
-                        Log.d("Yeps", "user");
-                        if (!snapshot.child("Matches").hasChild(liked.getKey())) {
+                if (snapshot.child(mCurrentUserID).child("Connection").exists()) {
+                    for (DataSnapshot liked : snapshot.child(mCurrentUserID).child("Connection").child("Yeps").getChildren()) {
+                        if (!snapshot.child(mCurrentUserID).child("Connection").child("Matches").hasChild(liked.getKey())
+                                && !snapshot.child(liked.getKey()).child("Connection").child("Nope").hasChild(mCurrentUserID)) {
                             fetchInfo(liked.getKey(), likedList, mLikedAdapter);
                         }
                     }
@@ -113,7 +111,6 @@ public class DAOUser {
                 String name = "", sex = "", profileImageUrl = "default";
                 if (snapshot.child("Name") != null) {
                     name = snapshot.child("Name").getValue().toString();
-                    Log.d("LikedInfo", "NDK");
                 }
                 if (snapshot.child("Sex") != null) {
                     sex = snapshot.child("Sex").getValue().toString();
@@ -124,7 +121,6 @@ public class DAOUser {
 
                 UserInfo userInfo = new UserInfo(userID, name, sex, profileImageUrl);
                 likedList.add(userInfo);
-                Log.d("MATCHES", name);
                 mLikedAdapter.notifyDataSetChanged();
             }
 
@@ -145,9 +141,7 @@ public class DAOUser {
                 Log.d("Name", userID);
                 String name = "", sex = "", profileImageUrl = "default", jobTitle = "", description = "";
                 if (snapshot.child("Name") != null) {
-                    Log.d("Name", "a");
                     name = snapshot.child("Name").getValue().toString();
-                    Log.d("LikedInfo", "NDK");
                 }
                 if (snapshot.child("Sex") != null) {
                     sex = snapshot.child("Sex").getValue().toString();
@@ -161,11 +155,9 @@ public class DAOUser {
                 if (snapshot.hasChild("Description")) {
                     description = snapshot.child("Description").getValue().toString();
                 }
-                Log.d("Name", name);
                 userInfo = new UserInfo(userID, name, sex, profileImageUrl);
                 userInfo.jobTitle = jobTitle;
-                Log.d("Name", userInfo.name);
-                Log.d("Name", userInfo.jobTitle);
+
                 userInfo.description = description;
             }
 

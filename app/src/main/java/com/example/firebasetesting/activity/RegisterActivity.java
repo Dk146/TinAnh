@@ -69,7 +69,6 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()){
                             Toast.makeText(RegisterActivity.this, "Sign up Error", Toast.LENGTH_SHORT);
-                            Log.d("Register", "No");
 
                         } else {
                             String userID = mAuth.getCurrentUser().getUid();

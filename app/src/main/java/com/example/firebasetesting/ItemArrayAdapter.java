@@ -54,7 +54,6 @@ public class ItemArrayAdapter extends ArrayAdapter<UserInfo> implements View.OnC
 
     @Override
     public void onClick(View v) {
-        Log.d("Clicked", "Clicked");
         Intent intent = new Intent(v.getContext(), OtherProfileActivity.class);
         Bundle b = new Bundle();
         b.putString("otherID", otherID);

@@ -99,7 +99,6 @@ public class MatchesActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-        Log.d("OnContinue", "restart");
         DAOUser daoUser = new DAOUser();
         mHasMessageList.clear();
         //daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
@@ -110,7 +109,6 @@ public class MatchesActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Log.d("OnContinue", "resume");
         super.onResume();
     }
 }

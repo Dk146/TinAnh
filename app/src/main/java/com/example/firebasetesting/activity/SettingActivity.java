@@ -202,6 +202,7 @@ public class SettingActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Uri downloadUrl = task.getResult();
                         Map userInfo = new HashMap();
+                        userInfo.put("ProfileImageUrl", downloadUrl);
                         mUserDB.updateChildren(userInfo);
                         finish();
                         return;
