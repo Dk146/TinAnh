@@ -2,6 +2,8 @@ package com.example.firebasetesting.activity;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +16,16 @@ import android.view.ViewGroup;
 import com.example.firebasetesting.DAOUser;
 import com.example.firebasetesting.R;
 import com.example.firebasetesting.UserInfo;
+import com.example.firebasetesting.chat.ChatObject;
 import com.example.firebasetesting.matches.BubbleMatchAdapter;
 import com.example.firebasetesting.matches.MatchAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 
@@ -32,7 +41,9 @@ public class MatchesFragment extends Fragment {
     private BubbleMatchAdapter mBubbleMatchAdapter;
     private LinkedList<UserInfo> mMatchList = new LinkedList<>();
     private LinkedList<UserInfo> mHasMessageList = new LinkedList<>();
-    private String mCurrentUserID;
+    private LinkedList<String> mListLastMessage = new LinkedList<>();
+    private String mCurrentUserID, chatID;
+    private DatabaseReference mDBChat;
 
 
     public MatchesFragment() {
@@ -72,11 +83,13 @@ public class MatchesFragment extends Fragment {
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        matchAdapter = new MatchAdapter(view.getContext(), mHasMessageList);
+        mDBChat = FirebaseDatabase.getInstance().getReference().child("Chat");
+
+        matchAdapter = new MatchAdapter(view.getContext(), mHasMessageList, mListLastMessage);
         mBubbleMatchAdapter = new BubbleMatchAdapter(view.getContext(), mMatchList);
 
         DAOUser daoUser = new DAOUser();
-        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
+        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter, mListLastMessage);
         daoUser.getUsersMatchID(mCurrentUserID, mMatchList, mBubbleMatchAdapter);
 
         //matchAdapter = new MatchAdapter(this, mMatchList);
@@ -91,14 +104,15 @@ public class MatchesFragment extends Fragment {
         //mBubbleMatchAdapter = new BubbleMatchAdapter(this, mMatchList);
         mRecyclerViewHorizontal.setAdapter(mBubbleMatchAdapter);
         mRecyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
-
     }
+
 
     @Override
     public void onResume() {
         DAOUser daoUser = new DAOUser();
         mHasMessageList.clear();
-        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
+        mListLastMessage.clear();
+        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter, mListLastMessage);
         mRecyclerView.setAdapter(matchAdapter);
         super.onResume();
     }

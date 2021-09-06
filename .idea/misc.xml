@@ -5,8 +5,14 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.11302083333333333" />
         <entry key="app/src/main/res/drawable/ic_favourite.xml" value="0.24256410256410257" />
+        <entry key="app/src/main/res/drawable/ic_match.xml" value="0.1111111111111111" />
+        <entry key="app/src/main/res/drawable/ic_match_active.xml" value="0.1111111111111111" />
+        <entry key="app/src/main/res/drawable/ic_setting_active.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/drawable/selector.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/drawable/selector_home.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/drawable/selector_match.xml" value="0.1111111111111111" />
+        <entry key="app/src/main/res/drawable/selector_message.xml" value="0.1111111111111111" />
+        <entry key="app/src/main/res/drawable/selector_setting.xml" value="0.1111111111111111" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23020833333333332" />

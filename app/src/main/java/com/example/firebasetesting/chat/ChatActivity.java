@@ -119,7 +119,8 @@ public class ChatActivity extends AppCompatActivity {
                                 Glide.with(getApplication()).load(profileImageUrl).into(mAvatar);
                                 break;
                         }
-                    }                }
+                    }
+                }
             }
 
             @Override
@@ -137,6 +138,9 @@ public class ChatActivity extends AppCompatActivity {
             DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child("UserInfo");
             userDB.child(mCurrentUserID).child("Connection").child("Matches").child(matchID).child("Status").setValue(true);
             userDB.child(matchID).child("Connection").child("Matches").child(mCurrentUserID).child("Status").setValue(true);
+            userDB.child(matchID).child("Connection").child("Matches").child(mCurrentUserID).child("LastMessage").setValue(sendMessageText);
+            userDB.child(mCurrentUserID).child("Connection").child("Matches").child(matchID).child("LastMessage").setValue(sendMessageText);
+
 
             Map newMessage = new HashMap();
             newMessage.put("CreateByUser", mCurrentUserID);

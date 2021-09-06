@@ -34,6 +34,7 @@ public class MatchesActivity extends AppCompatActivity {
     private LinkedList<UserInfo> mMatchList = new LinkedList<>();
     private LinkedList<UserInfo> mHasMessageList = new LinkedList<>();
     private String mCurrentUserID;
+    private DatabaseReference mDBChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +47,15 @@ public class MatchesActivity extends AppCompatActivity {
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        matchAdapter = new MatchAdapter(this, mHasMessageList);
+        //matchAdapter = new MatchAdapter(this, mHasMessageList);
         mBubbleMatchAdapter = new BubbleMatchAdapter(this, mMatchList);
 
+        mDBChat = FirebaseDatabase.getInstance().getReference().child("Chat");
+
         DAOUser daoUser = new DAOUser();
-        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
+        //daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
         daoUser.getUsersMatchID(mCurrentUserID, mMatchList, mBubbleMatchAdapter);
 
-        //matchAdapter = new MatchAdapter(this, mMatchList);
         mRecyclerView.setAdapter(matchAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -100,7 +102,7 @@ public class MatchesActivity extends AppCompatActivity {
         Log.d("OnContinue", "restart");
         DAOUser daoUser = new DAOUser();
         mHasMessageList.clear();
-        daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
+        //daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(matchAdapter);
         super.onRestart();

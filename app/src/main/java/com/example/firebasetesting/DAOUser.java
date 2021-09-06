@@ -36,7 +36,7 @@ public class DAOUser {
         return databaseReference.child(userInfo.ID).updateChildren(Info);
     }
 
-    public void getUsersMatchMessageID(String mCurrentUserID, LinkedList<UserInfo> likedList, RecyclerView.Adapter mLikedAdapter) {
+    public void getUsersMatchMessageID(String mCurrentUserID, LinkedList<UserInfo> likedList, RecyclerView.Adapter mLikedAdapter, LinkedList<String> listLastMessage) {
         DatabaseReference matchesDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mCurrentUserID).child("Connection").child("Matches");
         matchesDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -48,6 +48,7 @@ public class DAOUser {
                             String status = snapshot.child(match.getKey()).child("Status").getValue().toString();
                             if (status.equals("true")) {
                                 fetchInfo(match.getKey(), likedList, mLikedAdapter);
+                                listLastMessage.add(snapshot.child(match.getKey()).child("LastMessage").getValue().toString());
                             }
                         }
                     }
