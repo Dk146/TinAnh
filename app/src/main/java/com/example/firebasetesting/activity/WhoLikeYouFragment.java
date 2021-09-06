@@ -96,12 +96,21 @@ public class WhoLikeYouFragment extends Fragment {
                 String reply = data.getStringExtra(OtherProfileActivity.EXTRA_REPLY);
                 for (int i = 0; i < likedList.size(); ++i) {
                     if (likedList.get(i).ID.equals(reply)) {
-                        likedList.remove(i);
-                        mLikedAdapter.notifyDataSetChanged();
+//                        likedList.remove(i);
+//                        mLikedAdapter.notifyDataSetChanged();
                     }
                 }
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DAOUser daoUser = new DAOUser();
+        likedList.clear();
+        daoUser.getLikedUserID(mCurrentUserID, likedList, mLikedAdapter);
+        mLikedAdapter.notifyDataSetChanged();
     }
 
 }

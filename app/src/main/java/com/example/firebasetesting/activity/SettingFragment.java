@@ -207,6 +207,7 @@ public class SettingFragment extends Fragment {
                         Uri downloadUrl = task.getResult();
                         Map userInfo = new HashMap();
                         mUserDB.updateChildren(userInfo);
+                        userInfo.put("ProfileImageUrl", downloadUrl.toString());
                         getActivity().finish();
                         return;
                     } else {

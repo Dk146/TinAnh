@@ -81,15 +81,37 @@ public class DAOUser {
         });
     }
 
+//    public void getLikedUserID(String mCurrentUserID, LinkedList<UserInfo> likedList,RecyclerView.Adapter mLikedAdapter) {
+//        DatabaseReference likedDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mCurrentUserID).child("Connection");
+//        likedDB.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists()) {
+//                    for (DataSnapshot liked : snapshot.child("Yeps").getChildren()) {
+//                        Log.d("Yeps", "user");
+//                        if (!snapshot.child("Matches").hasChild(liked.getKey()) && !snapshot.child("Nope").hasChild(liked.getKey())) {
+//                            fetchInfo(liked.getKey(), likedList, mLikedAdapter);
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
+
     public void getLikedUserID(String mCurrentUserID, LinkedList<UserInfo> likedList,RecyclerView.Adapter mLikedAdapter) {
-        DatabaseReference likedDB = FirebaseDatabase.getInstance().getReference().child("UserInfo").child(mCurrentUserID).child("Connection");
+        DatabaseReference likedDB = FirebaseDatabase.getInstance().getReference().child("UserInfo");
         likedDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    for (DataSnapshot liked : snapshot.child("Yeps").getChildren()) {
-                        Log.d("Yeps", "user");
-                        if (!snapshot.child("Matches").hasChild(liked.getKey())) {
+                if (snapshot.child(mCurrentUserID).child("Connection").exists()) {
+                    for (DataSnapshot liked : snapshot.child(mCurrentUserID).child("Connection").child("Yeps").getChildren()) {
+                        if (!snapshot.child(mCurrentUserID).child("Connection").child("Matches").hasChild(liked.getKey())
+                                && !snapshot.child(liked.getKey()).child("Connection").child("Nope").hasChild(mCurrentUserID)) {
                             fetchInfo(liked.getKey(), likedList, mLikedAdapter);
                         }
                     }

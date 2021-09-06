@@ -31,7 +31,7 @@ public class OtherProfileActivity extends AppCompatActivity {
     TextView mName, mJobTitle, mDescription;
     String name, description, jobTitle, profileImageUrl;
     private DatabaseReference mUserDB, mOtherUserDB;
-    FloatingActionButton mLike, mDislike;
+    ImageView mLike, mDislike;
     String otherID;
     String userID;
     public static final String EXTRA_REPLY =

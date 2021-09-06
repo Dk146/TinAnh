@@ -111,9 +111,12 @@ public class MatchesFragment extends Fragment {
     public void onResume() {
         DAOUser daoUser = new DAOUser();
         Log.d("LastMessage", "onResume");
+        mMatchList.clear();
         mHasMessageList.clear();
         mListLastMessage.clear();
         daoUser.getUsersMatchMessageID(mCurrentUserID, mHasMessageList, matchAdapter, mListLastMessage);
+        daoUser.getUsersMatchID(mCurrentUserID,mMatchList,mBubbleMatchAdapter);
+        mRecyclerViewHorizontal.setAdapter(mBubbleMatchAdapter);
         mRecyclerView.setAdapter(matchAdapter);
         super.onResume();
     }

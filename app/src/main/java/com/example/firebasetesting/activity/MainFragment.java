@@ -258,22 +258,25 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("OnresumeFragment", "OnresumeFragment");
-        if (rowItems.size() != 0) {
-            DatabaseReference otherUserDB = userDB.child(rowItems.get(0).ID);
-            otherUserDB.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.child("Connection").child("Yeps").hasChild(currentUId) || snapshot.child("Connection").child("Nope").hasChild(currentUId)){
-                        rowItems.remove(0);
-                        arrayAdapter.notifyDataSetChanged();
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-
-        }
+//        Log.d("OnresumeFragment", "OnresumeFragment");
+//        if (rowItems.size() != 0) {
+//            DatabaseReference otherUserDB = userDB.child(rowItems.get(0).ID);
+//            otherUserDB.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if (snapshot.child("Connection").child("Yeps").hasChild(currentUId) || snapshot.child("Connection").child("Nope").hasChild(currentUId)){
+//                        rowItems.remove(0);
+//                        arrayAdapter.notifyDataSetChanged();
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                }
+//            });
+//
+//        }
+        rowItems.clear();
+        checkUserSex();
+        arrayAdapter.notifyDataSetChanged();
     }
 }
