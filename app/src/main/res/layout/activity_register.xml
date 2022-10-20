@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:background="@drawable/custombutton"
-        android:text="Register"
+        android:text="Đăng ký ngay"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
@@ -42,7 +42,7 @@
         android:layout_marginTop="36dp"
         android:background="@drawable/custom_input"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Mật khẩu"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="@color/black"
@@ -60,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logonew" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -78,23 +78,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Male"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:text="Nam" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Female"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:text="Nữ" />
+
         <RadioButton
-        android:id="@+id/radioButtonAnother"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Other"
-        android:padding="10dp"/>
+            android:id="@+id/radioButtonAnother"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="Khác" />
     </RadioGroup>
 
     <EditText
@@ -104,7 +105,7 @@
         android:layout_marginTop="52dp"
         android:background="@drawable/custom_input"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Tên của bạn"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black"

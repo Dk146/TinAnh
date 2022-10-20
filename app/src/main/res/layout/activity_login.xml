@@ -29,7 +29,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_input"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Mật khẩu"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="@color/black"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:background="@drawable/custombutton"
-        android:text="Login"
+        android:text="Đăng nhập"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -60,5 +60,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logonew" />
 </androidx.constraintlayout.widget.ConstraintLayout>

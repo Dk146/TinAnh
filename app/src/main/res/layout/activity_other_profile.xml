@@ -39,20 +39,22 @@
                         android:textColor="@color/black"
                         android:textSize="20sp"/>
                 </LinearLayout>
+
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/jobTitle"
-                    android:text="Job Title"
-                    android:paddingLeft="20dp"
-                    android:textSize="23sp"/>
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="Công việc"
+                    android:textSize="23sp" />
+
+                <TextView
                     android:id="@+id/description"
-                    android:text="Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:textSize="23sp"/>
+                    android:text="Mô tả về bản thân"
+                    android:textSize="23sp" />
             </LinearLayout>
         </ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton

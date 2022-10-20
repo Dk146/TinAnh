@@ -18,32 +18,32 @@
 
             <ImageView
                 android:id="@+id/avatar"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginTop="52dp"
+                android:layout_width="109dp"
+                android:layout_height="109dp"
+                android:layout_marginTop="20dp"
                 android:scaleType="centerCrop" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
-                android:textSize="20dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:textStyle="bold"
-                android:text="Name"
                 android:background="#c8cedb"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
-                android:paddingTop="25dp"/>
+                android:text="Tên"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="Thêm tên"
                 android:inputType="textPersonName"
-                android:hint="Add Name"
                 android:minHeight="48dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp" />
@@ -51,14 +51,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
                 android:background="#c8cedb"
-                android:text="Phone Number"
-                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:paddingTop="25dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
-                android:paddingTop="25dp"/>
+                android:text="Số điện thoại"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/phone"
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:ems="10"
-                android:hint="Add Phone number"
+                android:hint="Thêm số điện thoại"
                 android:inputType="phone"
                 android:minHeight="48dp"
                 android:paddingLeft="15dp"
@@ -80,7 +80,7 @@
                 android:paddingTop="25dp"
                 android:paddingRight="15dp"
                 android:paddingBottom="5dp"
-                android:text="Job Title"
+                android:text="Công việc"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:ems="10"
-                android:hint="Add Job Title"
+                android:hint="Thêm công việc"
                 android:inputType="textPersonName"
                 android:maxHeight="250dp"
                 android:paddingLeft="15dp"
@@ -104,7 +104,7 @@
                 android:paddingTop="25dp"
                 android:paddingRight="15dp"
                 android:paddingBottom="5dp"
-                android:text="Description"
+                android:text="Mô tả"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:ems="10"
-                android:hint="Add Description"
+                android:hint="Thêm mô tả"
                 android:inputType="textMultiLine"
                 android:maxHeight="250dp"
                 android:paddingLeft="15dp"
@@ -125,18 +125,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Confirm"
-                android:textColor="@color/black"
-                android:backgroundTint="#c8cedb"/>
+                android:backgroundTint="#c8cedb"
+                android:text="Xác nhận"
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/logOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Logout"
-                android:textColor="@color/black"
-                android:backgroundTint="#c8cedb"/>
+                android:backgroundTint="#c8cedb"
+                android:text="Đăng xuất"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
