@@ -23,28 +23,30 @@
             android:id="@+id/match_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
             android:text="Matcher's name"
-            android:id="@+id/match_name"
-            android:layout_marginBottom="10dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lastMessage"/>
-    </LinearLayout>
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastMessage"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#EAE9EC"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="horizontal" />
+<LinearLayout
+android:id="@+id/linearLayout2"
+android:layout_width="match_parent"
+android:layout_height="2dp"
+android:background="#EAE9EC"
+app:layout_constraintBottom_toBottomOf="parent"
+android:orientation="horizontal" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+    </LinearLayout>
